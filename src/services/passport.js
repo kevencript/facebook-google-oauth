@@ -61,7 +61,7 @@ passport.use(
       clientSecret: facebookClientSecret,
       callbackURL: "/auth/facebook/callback"
     },
-    function(accessToken, refreshToken, profile, cb) {
+    function(accessToken, refreshToken, profile, done) {
       console.log(profile);
       done(null, profile);
     }
