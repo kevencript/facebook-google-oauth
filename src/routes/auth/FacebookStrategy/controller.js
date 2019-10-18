@@ -8,7 +8,9 @@
 const passport = require("passport");
 
 // First authentication step
-exports.login_facebook = passport.authenticate("facebook");
+exports.login_facebook = passport.authenticate("facebook", {
+  scope: ["email"]
+});
 
 // Rota para o tratamento do callback
 exports.callback_authenticate = passport.authenticate("facebook");

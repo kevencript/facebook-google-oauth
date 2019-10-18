@@ -28,27 +28,19 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       // getting data from the profile
-      const {
-        sub,
-        name,
-        given_name,
-        family_name,
-        picture,
-        email
-      } = profile._json;
+      const { sub, name, picture, email } = profile._json;
 
-      const userCreated = {
+      const user = {
         googleId: sub,
-        nomeCompleto: name,
-        nome: given_name,
-        sobrenome: family_name,
+        nome: name,
         email,
-        picture
+        picture,
+        provider: "google"
       };
 
-      console.log(userCreated);
+      console.log(user);
 
-      done(null, userCreated);
+      done(null, user);
     }
   )
 );
@@ -62,8 +54,17 @@ passport.use(
       callbackURL: "/auth/facebook/callback"
     },
     function(accessToken, refreshToken, profile, done) {
-      console.log(profile);
-      done(null, profile);
+      const { name, id } = profile._json;
+
+      const user = {
+        facebookId: id,
+        nome: name,
+        email: "",
+        picture: "",
+        provider: "facebook"
+      };
+
+      done(null, user);
     }
   )
 );
