@@ -3,6 +3,7 @@ const Router = require("./src/routes/Router");
 const passport = require("passport");
 const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
+const { cookieSecret } = require("./src/config/keys");
 
 require("./src/services/passport"); // PassportJs config
 
@@ -11,7 +12,7 @@ const app = express();
 app.use(
   cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
-    keys: ["asljdhaskj"]
+    keys: [cookieSecret]
   })
 );
 

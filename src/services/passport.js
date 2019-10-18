@@ -4,7 +4,8 @@ const FacebookStrategy = require("passport-facebook").Strategy;
 const {
   googleClientID,
   googleClientSecret,
-  facebook
+  facebookClientID,
+  facebookClientSecret
 } = require("../config/keys");
 
 passport.serializeUser((user, done) => {
@@ -56,8 +57,8 @@ passport.use(
 passport.use(
   new FacebookStrategy(
     {
-      clientID: facebook.clientID,
-      clientSecret: facebook.clientSecret,
+      clientID: facebookClientID,
+      clientSecret: facebookClientSecret,
       callbackURL: "/auth/facebook/callback"
     },
     function(accessToken, refreshToken, profile, cb) {
